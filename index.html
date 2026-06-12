@@ -77,8 +77,9 @@ outline:none;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;
+margin-top:15px;
 }
 
 .card{
@@ -86,6 +87,7 @@ background:rgba(255,255,255,.08);
 border-radius:15px;
 padding:15px;
 transition:.3s;
+text-align:center;
 }
 
 .card:hover{
@@ -118,7 +120,6 @@ font-weight:600;
 cursor:pointer;
 }
 
-/* PLAYER OCULTO */
 #player{
 position:absolute;
 left:-9999px;
@@ -132,10 +133,8 @@ height:1px;
 
 <div class="container">
 
-<!-- 🎵 PLAYER YOUTUBE -->
 <div id="player"></div>
 
-<!-- HERO -->
 <div class="hero">
 
 <h1 class="titulo">Manu <span>&</span> Daniel</h1>
@@ -156,10 +155,9 @@ height:1px;
 
 </div>
 
-<!-- BUSCA -->
 <input class="busca" type="text" placeholder="🔍 Pesquisar convidado...">
 
-<!-- CONVIDADOS (NÃO ALTEREI NADA) -->
+<!-- CONVIDADOS -->
 <h2 class="section-title">Convidados</h2>
 
 <div class="grid">
@@ -194,8 +192,9 @@ height:1px;
 <div class="card"><div class="nome">Leandro</div><div class="qtd">4 pessoas</div></div>
 <div class="card"><div class="nome">João</div><div class="qtd">1 pessoa</div></div>
 <div class="card"><div class="nome">Pamela</div><div class="qtd">1 pessoa</div></div>
+</div>
 
-
+<!-- PADRINHOS (IGUAL CONVIDADOS) -->
 <h2 class="section-title">Padrinhos & Madrinhas</h2>
 
 <div class="grid">
@@ -207,35 +206,26 @@ height:1px;
 <div class="card"><div class="nome">Suzana</div><div class="qtd">Madrinha</div></div>
 <div class="card"><div class="nome">Claudinei</div><div class="qtd">Padrinho</div></div>
 <div class="card"><div class="nome">Lelê</div><div class="qtd">Madrinha</div></div>
-<div class="card"><div class="nome">Bernardo ou Ideidy</div><div class="qtd">Padrinho</div></div>
+<div class="card"><div class="nome">Bernardo ou Ideidy</div><div class="qtd">Padrinhos</div></div>
 <div class="card"><div class="nome">Daiane</div><div class="qtd">Madrinha</div></div>
 <div class="card"><div class="nome">Celso Klen</div><div class="qtd">Padrinho</div></div>
 <div class="card"><div class="nome">Rosa Klen</div><div class="qtd">Madrinha</div></div>
 </div>
 
-<footer>❤️ Obrigado pela presença ❤️</footer>
+<footer>❤️ Obrigado pela Confirmação ❤️</footer>
 
 </div>
 
-<!-- 🔥 SÓ MÚSICA FOI ALTERADA -->
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-
 let player;
 let tocando = false;
 
 function onYouTubeIframeAPIReady() {
 player = new YT.Player('player', {
-height: '1',
-width: '1',
 videoId: 'dp4cLPTcVU4',
-playerVars: {
-autoplay: 0,
-controls: 0,
-loop: 1,
-playlist: 'dp4cLPTcVU4'
-}
+playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'dp4cLPTcVU4' }
 });
 }
 
@@ -244,28 +234,25 @@ if (!player) return;
 
 if (tocando) {
 player.pauseVideo();
-document.getElementById("btnMusica").innerText = "▶ Tocar Música";
 tocando = false;
+document.getElementById("btnMusica").innerText = "▶ Tocar Música";
 } else {
 player.playVideo();
-document.getElementById("btnMusica").innerText = "⏸ Pausar Música";
 tocando = true;
+document.getElementById("btnMusica").innerText = "⏸ Pausar Música";
 }
 }
 
-// busca (igual)
 const busca = document.querySelector('.busca');
 const cards = document.querySelectorAll('.card');
 
 busca.addEventListener('input', () => {
 const v = busca.value.toLowerCase();
-
 cards.forEach(c => {
 const nome = c.querySelector('.nome').textContent.toLowerCase();
 c.style.display = nome.includes(v) ? 'block' : 'none';
 });
 });
-
 </script>
 
 </body>
